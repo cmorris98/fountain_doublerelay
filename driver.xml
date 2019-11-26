@@ -1,0 +1,88 @@
+<devicedata>
+  <version>6</version>
+  <manufacturer>Default Manufacturer</manufacturer>
+  <model>Default Model</model>
+  <creator>cmorris</creator>
+  <name>Fountain Double Relay</name>
+  <small image_source="c4z">sm_fountain_on.gif</small>
+  <large>devices_lg/C4.gif</large>
+  <control>lua_gen</control>
+  <driver>DriverWorks</driver>
+  <copyright>Copyright 2020 cmorris.  All rights reserved.</copyright>
+  <created>11/25/2019 7:06 PM</created>
+  <modified>11/25/2019 7:06 PM</modified>
+  <config>
+    <script file="driver.lua"></script>
+    <commands>
+      <command>
+        <name>Turn the NAME on</name>
+        <description>Turn the NAME on</description>
+      </command>
+      <command>
+        <name>Turn the NAME off</name>
+        <description>Turn the NAME off</description>
+      </command>
+    </commands>
+    <properties>
+      <property>
+        <name>TestProperty</name>
+        <type>STRING</type>
+        <default>Hello There</default>
+      </property>
+    </properties>
+  </config>
+  <connections>
+    <connection>
+      <type>1</type>
+      <id>1</id>
+      <audiosource>false</audiosource>
+      <videosource>false</videosource>
+      <connectionname>ON RELAY</connectionname>
+      <facing>6</facing>
+      <consumer>true</consumer>
+      <linelevel>false</linelevel>
+      <classes>
+        <class>
+          <classname>RELAY</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <type>1</type>
+      <id>2</id>
+      <audiosource>false</audiosource>
+      <videosource>false</videosource>
+      <connectionname>OFF RELAY</connectionname>
+      <facing>6</facing>
+      <consumer>true</consumer>
+      <linelevel>false</linelevel>
+      <classes>
+        <class>
+          <classname>RELAY</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <id>5000</id>
+      <connectionname>fan</connectionname>
+      <facing>6</facing>
+      <type>2</type>
+      <consumer>false</consumer>
+      <audiosource>false</audiosource>
+      <videosource>false</videosource>
+      <linelevel>false</linelevel>
+      <classes>
+        <class>
+          <classname>FAN</classname>
+        </class>
+      </classes>
+    </connection>
+  </connections>
+  <capabilities></capabilities>
+  <composer_categories>
+    <category>Motorization</category>
+  </composer_categories>
+  <proxies qty="">
+    <proxy proxybindingid="5000">fan</proxy>
+  </proxies>
+</devicedata>
