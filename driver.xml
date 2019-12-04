@@ -1,5 +1,5 @@
 <devicedata>
-  <version>13</version>
+  <version>34</version>
   <manufacturer>Default Fountain</manufacturer>
   <model>Default Fountain</model>
   <creator>cmorris</creator>
@@ -10,7 +10,7 @@
   <driver>DriverWorks</driver>
   <copyright>Copyright 2020 cmorris.  All rights reserved.</copyright>
   <created>11/25/2019 7:06 PM</created>
-  <modified>11/25/2019 9:30 PM</modified>
+  <modified>12/04/2019 7:36 AM</modified>
   <config>
     <script file="driver.lua"></script>
     <commands>
@@ -63,8 +63,38 @@
       </classes>
     </connection>
     <connection>
+      <type>1</type>
+      <id>3</id>
+      <audiosource>false</audiosource>
+      <videosource>false</videosource>
+      <connectionname>ON CONTACT</connectionname>
+      <facing>6</facing>
+      <consumer>true</consumer>
+      <linelevel>false</linelevel>
+      <classes>
+        <class>
+          <classname>CONTACT_SENSOR</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
+      <type>1</type>
+      <id>4</id>
+      <audiosource>false</audiosource>
+      <videosource>false</videosource>
+      <connectionname>OFF CONTACT</connectionname>
+      <facing>6</facing>
+      <consumer>true</consumer>
+      <linelevel>false</linelevel>
+      <classes>
+        <class>
+          <classname>CONTACT_SENSOR</classname>
+        </class>
+      </classes>
+    </connection>
+    <connection>
       <id>5000</id>
-      <connectionname>fountain_doublerelay</connectionname>
+      <connectionname>blind</connectionname>
       <facing>6</facing>
       <type>2</type>
       <consumer>false</consumer>
@@ -73,41 +103,18 @@
       <linelevel>false</linelevel>
       <classes>
         <class>
-          <classname>fountain_doublerelay</classname>
+          <classname>BLIND</classname>
         </class>
       </classes>
     </connection>
   </connections>
-  <states>
-    <state>
-      <id>1</id>
-      <small image_source="c4z">images\small\sm_fountain_on.gif</small>
-      <large image_source="c4z">images\small\lg_fountain_on.gif</large>
-    </state>
-    <state>
-      <id>2</id>
-      <small image_source="c4z">images\small\sm_fountain_off.gif</small>
-      <large image_source="c4z">images\small\lg_fountain_off.gif</large>
-    </state>
-  </states>
-  <actions>
-    <action>
-      <name>Turn On</name>
-      <command>TurnOn</command>
-    </action>
-    <action>
-      <name>Turn Off</name>
-      <command>TurnOff</command>
-    </action>
-  </actions>
   <navigator_categories>
     <category>Home</category>
   </navigator_categories>
   <composer_categories>
     <category>Motorization</category>
   </composer_categories>
-  <combo>true</combo>
   <proxies qty="">
-    <proxy>fountain_doublerelay</proxy>
+    <proxy proxybindingid="5000">blind</proxy>
   </proxies>
 </devicedata>

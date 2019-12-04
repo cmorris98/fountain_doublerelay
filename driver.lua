@@ -10,10 +10,12 @@ do	--Globals
 	TEST_PROPERTY = TEST_PROPERTY or 'Hello World 2'
 
 	Fountain = {}
-	-- FOUNTAIN_PROXY = 5001
-	PULSE = 5000
+	FOUNTAIN_PROXY = 5000
+	PULSE = 500
 	ON_RELAY = 1
 	OFF_RELAY = 2
+	ON_CONTACT = 3
+	OFF_CONTACT = 4
 	DEBUGPRINT = true
 end
 
@@ -71,13 +73,29 @@ function ReceivedFromProxy (idBinding, strCommand, tParams)
 	dbg (idBinding .. ' command: ' .. strCommand)
 
 	-- If it came from the fountain proxy we expect either ON or OFF
-	if (idBinding == BLIND_PROXY) then
-		if (strCommand == "ON") then
+	if (idBinding == FOUNTAIN_PROXY) then
+		if (strCommand == "UP") then
 			Fountain.OnCommand()
-			C4:SendToProxy (BLIND_PROXY, 'ON', {LEVEL = 1}, "NOTIFY", true)
-		elseif (strCommand == "OFF") then
+		elseif (strCommand == "DOWN") then
 			Fountain.OffCommand()
-			C4:SendToProxy (BLIND_PROXY, 'OFF', {LEVEL = 1}, "NOTIFY", true)
+		end
+	end
+
+	if (idBinding == ON_CONTACT) then
+		if (strCommand == "CLOSED") then
+			dbg('Foutain is ON')
+			C4:SendToProxy (FOUNTAIN_PROXY, 'UP', {LEVEL = 1}, "NOTIFY", true)
+		elseif (strCommand == "OPENED") then
+			dbg('Fountain is turning OFF')
+		end
+	end
+
+	if (idBinding == OFF_CONTACT) then
+		if (strCommand == "CLOSED") then
+			dbg('Foutain is OFF')
+			C4:SendToProxy (FOUNTAIN_PROXY, 'DOWN', {LEVEL = 1}, "NOTIFY", true)
+		elseif (strCommand == "OPENED") then
+			dbg('Fountain is turning ON')
 		end
 	end
 end
